@@ -16,7 +16,7 @@ Finally, to cleanly present your work, create a Jupyter notebook ```hw8.ipynb```
 
 ## Assessment
 
-This was difficult, but I get to see a gif now!
+This was very very difficult, but I get to see a gif now! I'm going to have to review this so I know what's going on.
 
 ## Honor Pledge
 
