@@ -16,21 +16,25 @@ from Particles import Particles
 import sys
 import subprocess
 
-if len(sys.argv) == 1:
-    num_frames = 1
-else:
-    num_frames = int(float(sys.argv[1]))
+def main():
+    if len(sys.argv) == 1:
+        num_frames = 1
+    else:
+        num_frames = int(sys.argv[1])
 
-p = Particles()
-for i in xrange(-99, -1):
-    for j in xrange(-99,99):
-        p.add_particle(i, j)
+    p = Particles()
+    for i in xrange(-99, -1):
+        for j in xrange(-99,99):
+            p.add_particle(i, j)
 
-p.generate_frame()
-for i in xrange(num_frames):
-    for j in xrange(20):
-        p.move()
     p.generate_frame()
+    for i in xrange(num_frames):
+        for j in xrange(20):
+            p.move()
+        p.generate_frame()
 
-subprocess.call("convert -delay 1 -loop 0 *.png gas.gif", shell=True)
-subprocess.call("rm *.png", shell=True)
+    subprocess.call("convert -delay 1 -loop 0 *.png gas.gif", shell=True)
+    subprocess.call("rm *.png", shell=True)
+    
+if __name__ == '__main__':
+    main()
