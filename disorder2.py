@@ -19,7 +19,7 @@ import subprocess
 if len(sys.argv) == 1:
     num_frames = 1
 else:
-    num_frames = int(sys.argv[1])
+    num_frames = int(float(sys.argv[1]))
 
 p = Particles()
 for i in xrange(-99, -1):
