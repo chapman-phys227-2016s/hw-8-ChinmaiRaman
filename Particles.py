@@ -80,19 +80,20 @@ class Particles:
 
 class Test_Particles(TestCase):
     def test_Particle(self):
-        test_seed = time.time()
-        rng = np.Random.randomstate(test_seed)
+        test_seed = int(time.time())
+        print test_seed
+        rng = np.random.RandomState(test_seed)
         particles_1 = Particles(test_seed)
         particles_2 = Particles(test_seed)
 
         for i in xrange(5):
-            particles1.add_particle(50, i)
-            particles2.add_particle(50, i)
+            particles_1.add_particle(50, i)
+            particles_2.add_particle(50, i)
 
         for i in xrange(10):
-            particles1.move()
-            particles2.move()
+            particles_1.move()
+            particles_2.move()
 
-        check = (particles1.x_pos == particles2.x_pos and particles1.y_pos == particles2.y_pos)
+        check = (particles_1.x_pos == particles_2.x_pos).all() and (particles_1.y_pos == particles_2.y_pos).all()
         msg = "Failure"
         assert check, msg
