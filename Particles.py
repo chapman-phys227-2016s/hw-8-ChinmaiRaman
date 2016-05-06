@@ -41,7 +41,7 @@ class Particles:
         self.y_pos = np.append(self.y_pos, y0)
 
     def move(self, stepsize = 1):
-        directions = np.random.randint(1, 5, len(self.x_pos))
+        directions = self.RNG.randint(1, 5, len(self.x_pos))
         x_move = np.zeros(len(self.x_pos))
         y_move = np.zeros(len(self.y_pos))
         x_move[directions == 1] = stepsize
@@ -80,4 +80,19 @@ class Particles:
 
 class Test_Particles(TestCase):
     def test_Particle(self):
-        assert(1 == 1)
+        test_seed = time.time()
+        rng = np.Random.randomstate(test_seed)
+        particles_1 = Particles(test_seed)
+        particles_2 = Particles(test_seed)
+
+        for i in xrange(5):
+            particles1.add_particle(50, i)
+            particles2.add_particle(50, i)
+
+        for i in xrange(10):
+            particles1.move()
+            particles2.move()
+
+        check = (particles1.x_pos == particles2.x_pos and particles1.y_pos == particles2.y_pos)
+        msg = "Failure"
+        assert check, msg
